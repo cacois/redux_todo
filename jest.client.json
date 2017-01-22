@@ -1,0 +1,17 @@
+{
+  "globals": {
+    "__TS_CONFIG__": "./src/client/tsconfig.json"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js"
+  ],
+  "transform": {
+    ".(ts|tsx)": "./node_modules/ts-jest/preprocessor.js"
+  },
+  "testResultsProcessor": "./node_modules/ts-jest/coverageprocessor.js",
+  "testRegex": "src/client/.*\\.spec\\.(ts|tsx|js)$",
+  "collectCoverage": true,
+  "coverageReporters": ["text", "html"]
+}
