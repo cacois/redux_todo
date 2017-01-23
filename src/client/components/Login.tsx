@@ -18,8 +18,17 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         password: ''
     };
 
+    componentDidMount() {
+        console.log('mounted');
+        console.log(this);
+    }
+
+    componentWillUnmount() {
+        console.log('unmounted');
+    }
+
     usernameChange = (event: any): void => {
-        console.log(this.state);
+        console.log(this);
         this.setState({
             username: event.target.value,
             password: this.state.password
@@ -40,6 +49,8 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     render() {
+        console.log('render');
+        console.log(this);
         return (
             <p>
                 LOGIN
