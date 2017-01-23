@@ -1,3 +1,4 @@
 export interface IAppState {
-    counter: number;
+    counter: number | null;
+    authToken: string | null;
 }

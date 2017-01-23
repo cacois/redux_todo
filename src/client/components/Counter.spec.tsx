@@ -26,10 +26,12 @@ function setup(value = 0) {
 describe('Counter component', () => {
     it('should extract counter in the selector', () => {
         const testState: IAppState = {
-            counter: 0
+            counter: 0,
+            authToken: ''
         };
-        const expectedState = {
-            counter: 0
+        const expectedState: IAppState = {
+            counter: 0,
+            authToken: ''
         };
         expect(mapStateToProps(testState)).toEqual(expectedState);
     });

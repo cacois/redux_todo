@@ -1,3 +1,12 @@
+export type LOGIN_ACTION = 'App/Auth/LOGIN';
+export const LOGIN_ACTION : LOGIN_ACTION = 'App/Auth/LOGIN';
+
+export type LOGGED_IN_ACTION = 'App/Auth/LOGGED_IN';
+export const LOGGED_IN_ACTION : LOGGED_IN_ACTION = 'App/Auth/LOGGED_IN';
+
+export type LOGOUT_ACTION = 'App/Auth/LOGOUT';
+export const LOGOUT_ACTION : LOGOUT_ACTION = 'App/Auth/LOGOUT';
+
 export type INCREMENT_COUNTER_ACTION = 'App/Counter/INCREMENT_COUNTER';
 export const INCREMENT_COUNTER_ACTION : INCREMENT_COUNTER_ACTION = 'App/Counter/INCREMENT_COUNTER';
 
