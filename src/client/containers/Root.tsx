@@ -6,9 +6,9 @@ import configureStore from '../store/configureStore';
 import {IAppState} from '../store/IAppState';
 import {Router, Route, IndexRoute, hashHistory, RedirectFunction, RouterState} from 'react-router';
 import {syncHistoryWithStore, ReactRouterReduxHistory} from 'react-router-redux';
-import {App} from '../components/App';
-import {Login} from '../components/Login';
-let Counter = require('../components/Counter').default;
+import App from '../components/App';
+import Login from '../components/Login';
+import Counter from '../components/Counter';
 
 export default class Root extends React.Component<IRootProps, void> {
     store: Redux.Store<IAppState> = configureStore();

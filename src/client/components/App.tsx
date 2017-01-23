@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Link, hashHistory } from 'react-router';
 
-// TODO: Strongly type props for children
-export class App extends React.Component<any, any> {
+export default class App extends React.Component<any, any> {
     render() {
         return (
             <div>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
 import configureStore from 'redux-mock-store';
-import {App} from './App';
+import App from './App';
 
 function setup() {
     const middlewares: any[] = [];

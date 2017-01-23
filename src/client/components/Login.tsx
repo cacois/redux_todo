@@ -13,16 +13,13 @@ interface ILoginState {
 
 export class Login extends React.Component<ILoginProps, ILoginState> {
     static propTypes = {};
-
-    constructor(props: ILoginProps) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        };
-    }
+    state = {
+        username: '',
+        password: ''
+    };
 
     usernameChange = (event: any): void => {
+        console.log(this.state);
         this.setState({
             username: event.target.value,
             password: this.state.password
