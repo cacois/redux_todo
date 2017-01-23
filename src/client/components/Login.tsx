@@ -21,36 +21,31 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     componentDidMount() {
         console.log('mounted');
         console.log(this);
-    }
-
-    componentWillUnmount() {
-        console.log('unmounted');
-    }
-
-    usernameChange = (event: any): void => {
-        console.log(this);
-        this.setState({
-            username: event.target.value,
-            password: this.state.password
-        });
-    }
-
-    passwordChange = (event: any): void => {
-        this.setState({
-            username: this.state.username,
-            password: event.target.value
-        });
-    }
-
-    login = (event: any): void => {
-        event.preventDefault();
-        console.log('login');
-        console.log(this.state);
+        this.render = this.render.bind(this);
     }
 
     render() {
-        console.log('render');
-        console.log(this);
+        let usernameChange = (event: any): void => {
+            console.log(this);
+            this.setState({
+                username: event.target.value,
+                password: this.state.password
+            });
+        };
+
+        let passwordChange = (event: any): void => {
+            this.setState({
+                username: this.state.username,
+                password: event.target.value
+            });
+        };
+
+        let login = (event: any): void => {
+            event.preventDefault();
+            console.log('login');
+            console.log(this);
+        };
+
         return (
             <p>
                 LOGIN
@@ -58,15 +53,15 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                     type='text'
                     value={this.state.username}
                     placeholder='username'
-                    onChange={this.usernameChange}
+                    onChange={usernameChange}
                 />
                 <FormControl
                     type='text'
                     value={this.state.password}
                     placeholder='password'
-                    onChange={this.passwordChange}
+                    onChange={passwordChange}
                 />
-                <Button bsStyle='primary' onClick={this.login}>+</Button>
+                <Button bsStyle='primary' onClick={(e) => {console.log(this);}}>Login</Button>
             </p>
         );
     }
