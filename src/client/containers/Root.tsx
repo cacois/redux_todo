@@ -20,8 +20,6 @@ export default class Root extends React.Component<IRootProps, void> {
             if (this.store.getState().authToken) {
                 if (nextState.location.state && nextState.location.pathname) {
                     replace(nextState.location.pathname);
-                } else {
-                    replace('/');
                 }
             } else {
                 replace('/login');

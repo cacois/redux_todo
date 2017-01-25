@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Link, hashHistory } from 'react-router';
+import Spinner from './Spinner';
 
 export default class App extends React.Component<any, any> {
     render() {
         return (
             <div>
+                <Spinner/>
                 <header>
                     Links:
                     {' '}

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 
+require('es6-promise').polyfill();
 require('bootstrap-less/bootstrap/index.less');
 require('./style/app.less');
 

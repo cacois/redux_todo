@@ -2,67 +2,53 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {FormControl, Button} from 'react-bootstrap';
 import {IAppState} from '../store/IAppState';
-import AuthActions from '../actions/AuthActions';
+import LoginActions from '../actions/LoginActions';
+import Spinner from './Spinner';
 
 interface ILoginProps {
+    login: (username: string, password: string) => Function;
 }
+
 interface ILoginState {
     username: string;
     password: string;
 }
 
 export class Login extends React.Component<ILoginProps, ILoginState> {
-    static propTypes = {};
+    static propTypes = {
+        login: React.PropTypes.func.isRequired
+    };
     state = {
         username: '',
         password: ''
     };
 
-    componentDidMount() {
-        console.log('mounted');
-        console.log(this);
-        this.render = this.render.bind(this);
+    usernameChange(event: any): void {
+        this.setState({
+            username: event.target.value,
+            password: this.state.password
+        });
     }
 
+    passwordChange(event: any): void {
+        this.setState({
+            username: this.state.username,
+            password: event.target.value
+        });
+    };
+
     render() {
-        let usernameChange = (event: any): void => {
-            console.log(this);
-            this.setState({
-                username: event.target.value,
-                password: this.state.password
-            });
-        };
-
-        let passwordChange = (event: any): void => {
-            this.setState({
-                username: this.state.username,
-                password: event.target.value
-            });
-        };
-
-        let login = (event: any): void => {
-            event.preventDefault();
-            console.log('login');
-            console.log(this);
-        };
-
+        const {login} = this.props;
         return (
-            <p>
+            <div>
+                <Spinner/>
                 LOGIN
-                <FormControl
-                    type='text'
-                    value={this.state.username}
-                    placeholder='username'
-                    onChange={usernameChange}
-                />
-                <FormControl
-                    type='text'
-                    value={this.state.password}
-                    placeholder='password'
-                    onChange={passwordChange}
-                />
-                <Button bsStyle='primary' onClick={(e) => {console.log(this);}}>Login</Button>
-            </p>
+                <FormControl type='text' value={this.state.username}
+                             placeholder='username' onChange={(e) => this.usernameChange(e)}/>
+                <FormControl type='text' value={this.state.password}
+                             placeholder='password' onChange={(e) => this.passwordChange(e)}/>
+                <Button bsStyle='primary' onClick={(e) => login(this.state.username, this.state.password)}>Login</Button>
+            </div>
         );
     }
 }
@@ -71,4 +57,4 @@ export function mapStateToProps(state: IAppState) {
     return {};
 }
 
-export default connect(mapStateToProps, AuthActions)(Login);
+export default connect(mapStateToProps, LoginActions)(Login);
