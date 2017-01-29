@@ -28,12 +28,11 @@ describe('Counter component', () => {
         const testState: IAppState = {
             counter: 0,
             authToken: '',
-            isWaiting: false
+            isWaiting: false,
+            routing: null
         };
-        const expectedState: IAppState = {
-            counter: 0,
-            authToken: '',
-            isWaiting: false
+        const expectedState = {
+            counter: 0
         };
         expect(mapStateToProps(testState)).toEqual(expectedState);
     });

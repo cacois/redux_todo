@@ -6,10 +6,7 @@ import App from './App';
 function setup() {
     const middlewares: any[] = [];
     const mockStore = configureStore(middlewares);
-    const initialState = {
-        isWaiting: false,
-        pingState: '',
-    };
+    const initialState = {};
     const store = mockStore(initialState);
     const options = {
         context: {store},

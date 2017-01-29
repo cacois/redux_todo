@@ -4,10 +4,11 @@ import * as thunk from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 import Store = Redux.Store;
 import {IAppState} from './IAppState';
-import {routerMiddleware, syncHistoryWithStore} from 'react-router-redux';
+import {routerMiddleware} from 'react-router-redux';
 import {hashHistory} from 'react-router';
 
 export default function configureStore(): Store<IAppState> {
+    /* istanbul ignore if */
     if (process.env.NODE_ENV === 'production') {
         const enhancer = applyMiddleware(thunk.default, routerMiddleware(hashHistory));
         return createStore<IAppState>(require('../reducers').rootReducer, enhancer);
@@ -26,6 +27,7 @@ export default function configureStore(): Store<IAppState> {
 
         const store = createStore<IAppState>(require('../reducers').rootReducer, enhancer);
 
+        /* istanbul ignore next */
         if ((<any>module).hot) {
             (<any>module).hot.accept('../reducers', () => {
                 store.replaceReducer(require('../reducers').rootReducer);

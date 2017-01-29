@@ -19,7 +19,8 @@ describe('Spinner component', () => {
         const testState: IAppState = {
             counter: 0,
             authToken: '',
-            isWaiting: false
+            isWaiting: false,
+            routing:null
         };
         const expectedState = {
             isWaiting: false
@@ -29,11 +30,11 @@ describe('Spinner component', () => {
 
     it('should create a div when isWaiting is true', () => {
         const {div} = setup(true);
-        expect(div.isEmpty()).toBeFalsy();
+        expect(div.exists()).not.toBeFalsy();
     });
 
     it('should not create a div when isWaiting is false', () => {
         const {div} = setup(false);
-        expect(div.isEmpty()).not.toBeFalsy();
+        expect(div.exists()).toBeFalsy();
     });
 });

@@ -15,7 +15,7 @@ export default class Root extends React.Component<IRootProps, void> {
     history: ReactRouterReduxHistory = syncHistoryWithStore(hashHistory, this.store);
 
     checkAuth = (nextState: RouterState, replace: RedirectFunction): void => {
-        console.log(this.store.getState().authToken);
+        console.log('checkAuth token: ' + this.store.getState().authToken);
         if (nextState.location.pathname !== '/login') {
             if (this.store.getState().authToken) {
                 if (nextState.location.state && nextState.location.pathname) {
@@ -28,6 +28,7 @@ export default class Root extends React.Component<IRootProps, void> {
     }
 
     render() {
+        /* istanbul ignore if */
         if (process.env.NODE_ENV === 'production') {
             return (
                 <Provider store={this.store}>

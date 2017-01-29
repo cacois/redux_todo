@@ -21,7 +21,6 @@ function login(username: string, password: string): Function {
             headers: {'Content-Type': 'application/json'}
         })
             .then((response) => {
-                console.log(response);
                 if (response.status === 200) {
                     dispatch(SpinnerActions.hide());
                     dispatch(loggedIn(response.headers.get('Authentication')));

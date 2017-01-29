@@ -14,5 +14,10 @@
   "testResultsProcessor": "./node_modules/ts-jest/coverageprocessor.js",
   "testRegex": "src/server/.*\\.spec\\.(ts|tsx|js)$",
   "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/server/**/*.{js,ts,tsx}",
+    "!src/server/main.ts",
+    "!**/node_modules/**"
+  ],
   "coverageReporters": ["text", "html"]
 }
