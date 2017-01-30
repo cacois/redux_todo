@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {counterReducer} from './counter';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 import {spinnerReducer} from './spinner';
 import {routerReducer} from 'react-router-redux';
 import {loginReducer} from './login';

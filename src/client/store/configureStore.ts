@@ -3,9 +3,14 @@ import {persistState} from 'redux-devtools';
 import * as thunk from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 import Store = Redux.Store;
-import {IAppState} from './IAppState';
 import {routerMiddleware} from 'react-router-redux';
 import {hashHistory} from 'react-router';
+
+export interface IAppState {
+    counter: number | null;
+    authToken: string | null;
+    isWaiting: Boolean;
+}
 
 export default function configureStore(): Store<IAppState> {
     /* istanbul ignore if */

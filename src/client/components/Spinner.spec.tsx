@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 import {Spinner, SpinnerSelector} from './Spinner';
 
 function setup(value = false) {

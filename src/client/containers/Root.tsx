@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Provider} from 'react-redux';
 import DevTools from './DevTools';
 import configureStore from '../store/configureStore';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 import {Router, Route, IndexRoute, hashHistory, RedirectFunction, RouterState} from 'react-router';
 import {syncHistoryWithStore, ReactRouterReduxHistory} from 'react-router-redux';
 import App from '../components/App';

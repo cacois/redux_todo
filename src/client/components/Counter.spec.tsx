@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {Counter, mapStateToProps} from './Counter';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 
 function setup(value = 0) {
     const actions = {

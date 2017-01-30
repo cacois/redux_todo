@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import { Button } from 'react-bootstrap';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 import CounterActions from '../actions/CounterActions';
 
 interface ICounterProps {

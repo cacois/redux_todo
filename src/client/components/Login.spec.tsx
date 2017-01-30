@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
 import {Login, mapStateToProps} from './Login';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 import configureStore from 'redux-mock-store';
 
 function setup() {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {IAppState} from '../store/IAppState';
+import {IAppState} from '../store/configureStore';
 
 interface ISpinnerProps {
     isWaiting: Boolean;
