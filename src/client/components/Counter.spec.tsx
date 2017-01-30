@@ -28,8 +28,7 @@ describe('Counter component', () => {
         const testState: IAppState = {
             counter: 0,
             authToken: '',
-            isWaiting: false,
-            routing: null
+            isWaiting: false
         };
         const expectedState = {
             counter: 0

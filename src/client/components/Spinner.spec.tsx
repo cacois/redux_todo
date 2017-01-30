@@ -19,8 +19,7 @@ describe('Spinner component', () => {
         const testState: IAppState = {
             counter: 0,
             authToken: '',
-            isWaiting: false,
-            routing:null
+            isWaiting: false
         };
         const expectedState = {
             isWaiting: false

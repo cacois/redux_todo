@@ -4,7 +4,6 @@ import Root from './Root';
 import LoginActions from '../actions/LoginActions';
 import {hashHistory} from 'react-router';
 
-
 const component = mount<{}, void>(<Root/>);
 
 let sessionStorageMock = () => {
@@ -31,32 +30,32 @@ describe('Root component', () => {
     it('should allow navigation to /login', () => {
         let store = (component.instance() as Root).store;
         hashHistory.push('/login');
-        expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/login');
+        expect((store.getState() as any).routing.locationBeforeTransitions.pathname).toEqual('/login');
     });
 
     it('should redirect by default to /login when there\'s no auth token', () => {
         let store = (component.instance() as Root).store;
-        expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/login');
+        expect((store.getState() as any).routing.locationBeforeTransitions.pathname).toEqual('/login');
     });
 
     it('should redirect to /login when there\'s no auth token', () => {
         let store = (component.instance() as Root).store;
         hashHistory.push('/');
-        expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/login');
+        expect((store.getState() as any).routing.locationBeforeTransitions.pathname).toEqual('/login');
     });
 
     it('should allow navigation to / when there\'s an auth token', () => {
         let store = (component.instance() as Root).store;
         store.dispatch(LoginActions.loggedIn('token'));
         hashHistory.push('/');
-        expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/');
+        expect((store.getState() as any).routing.locationBeforeTransitions.pathname).toEqual('/');
     });
 
     it('should allow navigation to / when there\'s an auth token and state', () => {
         let store = (component.instance() as Root).store;
         store.dispatch(LoginActions.loggedIn('token'));
         hashHistory.replace({pathname:'/', state: { test:1 }});
-        expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/');
+        expect((store.getState() as any).routing.locationBeforeTransitions.pathname).toEqual('/');
     });
 });
 

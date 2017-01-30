@@ -34,8 +34,7 @@ describe('Login component', () => {
         const testState: IAppState = {
             counter: 0,
             authToken: '',
-            isWaiting: false,
-            routing: null
+            isWaiting: false
         };
         const expectedState = {};
         expect(mapStateToProps(testState)).toEqual(expectedState);
