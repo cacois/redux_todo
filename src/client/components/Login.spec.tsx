@@ -2,21 +2,30 @@ import * as React from 'react';
 import {mount} from 'enzyme';
 import {Login, mapStateToProps} from './Login';
 import {IAppState} from '../store/IAppState';
+import configureStore from 'redux-mock-store';
 
 function setup() {
+    const middlewares: any[] = [];
+    const mockStore = configureStore(middlewares);
+    const initialState = {};
+    const store = mockStore(initialState);
+    const options = {
+        context: {store},
+        childContextTypes: {store: React.PropTypes.object.isRequired}
+    };
+
     const actions = {
         login: jest.fn()
     };
 
-    const component = mount(
-        <Login {...actions} />
-    );
+    const component = mount(<Login {...actions} />, options);
 
     return {
         component: component,
         actions: actions,
-        buttons: component.find('button'),
-        p: component.find('p')
+        username: component.find('#username'),
+        password: component.find('#password'),
+        login: component.find('#login')
     };
 }
 
@@ -31,39 +40,24 @@ describe('Login component', () => {
         const expectedState = {};
         expect(mapStateToProps(testState)).toEqual(expectedState);
     });
-    //
-    // it('should display count', () => {
-    //     const {p} = setup();
-    //     expect(p.text()).toMatch(/^Clicked: 0 times/);
-    // });
-    //
-    // it('first button should call increment', () => {
-    //     const {buttons, actions} = setup();
-    //     buttons.at(0).simulate('click');
-    //     expect(actions.increment).toBeCalled();
-    // });
-    //
-    // it('second button should call decrement', () => {
-    //     const {buttons, actions} = setup();
-    //     buttons.at(1).simulate('click');
-    //     expect(actions.decrement).toBeCalled();
-    // });
-    //
-    // it('third button should not call increment if the counter is even', () => {
-    //     const {buttons, actions} = setup(42);
-    //     buttons.at(2).simulate('click');
-    //     expect(actions.increment).not.toBeCalled();
-    // });
-    //
-    // it('third button should call incrementIfOdd if the counter is odd', () => {
-    //     const {buttons, actions} = setup(43);
-    //     buttons.at(2).simulate('click');
-    //     expect(actions.incrementIfOdd).toBeCalled();
-    // });
-    //
-    // it('third button should call incrementIfOdd if the counter is odd and negative', () => {
-    //     const {buttons, actions} = setup(-43);
-    //     buttons.at(2).simulate('click');
-    //     expect(actions.incrementIfOdd).toBeCalled();
-    // });
+
+    it('should update state on username input', () => {
+        const {component, username} = setup();
+        username.simulate('change', {target: {value: 'testUsername'}});
+        expect((component.state() as any).username).toEqual('testUsername');
+    });
+
+    it('should update state on password input', () => {
+        const {component, password} = setup();
+        password.simulate('change', {target: {value: 'testPassword'}});
+        expect((component.state() as any).password).toEqual('testPassword');
+    });
+
+    it('should call login with username and password on button press', () => {
+        const {actions, username, password, login} = setup();
+        username.simulate('change', {target: {value: 'testUsername'}});
+        password.simulate('change', {target: {value: 'testPassword'}});
+        login.simulate('click');
+        expect(actions.login).toHaveBeenCalledWith('testUsername', 'testPassword');
+    });
 });

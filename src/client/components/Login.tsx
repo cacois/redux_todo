@@ -43,11 +43,12 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
             <div>
                 <Spinner/>
                 LOGIN
-                <FormControl type='text' value={this.state.username}
+                <FormControl id='username' type='text' value={this.state.username}
                              placeholder='username' onChange={(e) => this.usernameChange(e)}/>
-                <FormControl type='text' value={this.state.password}
+                <FormControl id='password' type='text' value={this.state.password}
                              placeholder='password' onChange={(e) => this.passwordChange(e)}/>
-                <Button bsStyle='primary' onClick={(e) => login(this.state.username, this.state.password)}>Login</Button>
+                <Button id='login' bsStyle='primary'
+                        onClick={(e) => login(this.state.username, this.state.password)}>Login</Button>
             </div>
         );
     }

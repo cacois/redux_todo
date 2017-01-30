@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {Provider} from 'react-redux';
+import {Provider, Store} from 'react-redux';
 import DevTools from './DevTools';
-import {IRootProps} from './IRootProps';
 import configureStore from '../store/configureStore';
 import {IAppState} from '../store/IAppState';
 import {Router, Route, IndexRoute, hashHistory, RedirectFunction, RouterState} from 'react-router';
@@ -10,18 +9,16 @@ import App from '../components/App';
 import Login from '../components/Login';
 import Counter from '../components/Counter';
 
+interface IRootProps {
+}
+
 export default class Root extends React.Component<IRootProps, void> {
     store: Redux.Store<IAppState> = configureStore();
     history: ReactRouterReduxHistory = syncHistoryWithStore(hashHistory, this.store);
 
     checkAuth = (nextState: RouterState, replace: RedirectFunction): void => {
-        console.log('checkAuth token: ' + this.store.getState().authToken);
         if (nextState.location.pathname !== '/login') {
-            if (this.store.getState().authToken) {
-                if (nextState.location.state && nextState.location.pathname) {
-                    replace(nextState.location.pathname);
-                }
-            } else {
+            if (!this.store.getState().authToken) {
                 replace('/login');
             }
         }
