@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Provider, Store} from 'react-redux';
+import {Provider} from 'react-redux';
 import DevTools from './DevTools';
 import configureStore from '../store/configureStore';
 import {IAppState} from '../store/IAppState';
@@ -17,10 +17,8 @@ export default class Root extends React.Component<IRootProps, void> {
     history: ReactRouterReduxHistory = syncHistoryWithStore(hashHistory, this.store);
 
     checkAuth = (nextState: RouterState, replace: RedirectFunction): void => {
-        if (nextState.location.pathname !== '/login') {
-            if (!this.store.getState().authToken) {
-                replace('/login');
-            }
+        if (!this.store.getState().authToken) {
+            replace('/login');
         }
     }
 

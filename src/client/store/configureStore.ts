@@ -19,6 +19,7 @@ export default function configureStore(): Store<IAppState> {
             applyMiddleware(routerMiddleware(hashHistory), thunk.default),
             DevTools.instrument(),
             persistState(
+                /* istanbul ignore next */
                 window.location.href.match(/[?&]debug_session=([^&#]+)\b/) ?
                     window.location.href.match(/[?&]debug_session=([^&#]+)\b/)[0] :
                     null

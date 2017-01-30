@@ -28,6 +28,12 @@ describe('Root component', () => {
         expect(component.exists()).toBeTruthy();
     });
 
+    it('should allow navigation to /login', () => {
+        let store = (component.instance() as Root).store;
+        hashHistory.push('/login');
+        expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/login');
+    });
+
     it('should redirect by default to /login when there\'s no auth token', () => {
         let store = (component.instance() as Root).store;
         expect(store.getState().routing.locationBeforeTransitions.pathname).toEqual('/login');
