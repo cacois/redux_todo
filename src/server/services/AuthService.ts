@@ -1,4 +1,7 @@
-import {UserCredential} from '../models/userCredential';
+export interface UserCredential {
+    username: string;
+    password: string;
+}
 
 export class AuthService {
     private static tokens: string[] = [];
