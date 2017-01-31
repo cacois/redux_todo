@@ -21,7 +21,7 @@ let todoItem: TodoItem = {
 describe('Todo API', () => {
     it('Should respond to GET /', () => {
         TodoService.getAll = jest.fn();
-        (<jest.Mock<void>>TodoService.getAll).mockImplementation((): TodoItem[] => {
+        (<jest.Mock<TodoItem[]>>TodoService.getAll).mockImplementation((): TodoItem[] => {
             return [];
         });
 
@@ -44,7 +44,7 @@ describe('Todo API', () => {
 
     it('Should return HTTP/404 when getting an invalid id', () => {
         TodoService.get = jest.fn();
-        (<jest.Mock<void>>TodoService.get).mockImplementation((_): TodoItem => {
+        (<jest.Mock<TodoItem>>TodoService.get).mockImplementation((_): TodoItem => {
             return null;
         });
 
@@ -65,7 +65,7 @@ describe('Todo API', () => {
 
     it('Should return an item when getting a valid id', () => {
         TodoService.get = jest.fn();
-        (<jest.Mock<void>>TodoService.get).mockImplementation((_): TodoItem => {
+        (<jest.Mock<TodoItem>>TodoService.get).mockImplementation((_): TodoItem => {
             return todoItem;
         });
 
@@ -93,7 +93,7 @@ describe('Todo API', () => {
 
     it('Should return an id when inserting', () => {
         TodoService.insert = jest.fn();
-        (<jest.Mock<void>>TodoService.insert).mockImplementation((_): number => {
+        (<jest.Mock<number>>TodoService.insert).mockImplementation((_): number => {
             return 0;
         });
 
