@@ -75,12 +75,7 @@ describe('Todo API', () => {
                 .get('/api/todo/0')
                 .expect(200)
                 .expect('Content-Type', /json/)
-                .expect({
-                    id: null,
-                    title: 'test',
-                    description: 'test',
-                    isComplete: false
-                })
+                .expect(todoItem)
                 .end((err: any, res: express.Response) => {
                     if (err) {
                         reject(err);
