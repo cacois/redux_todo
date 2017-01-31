@@ -1,6 +1,3 @@
-export type LOGIN_ACTION = 'App/Auth/LOGIN';
-export const LOGIN_ACTION : LOGIN_ACTION = 'App/Auth/LOGIN';
-
 export type LOGGED_IN_ACTION = 'App/Auth/LOGGED_IN';
 export const LOGGED_IN_ACTION : LOGGED_IN_ACTION = 'App/Auth/LOGGED_IN';
 
