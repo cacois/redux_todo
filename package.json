@@ -9,7 +9,7 @@
     "server:test": "NODE_ENV=test-server ./node_modules/.bin/jest --config ./jest.server.json --no-cache",
     "watch": "NODE_ENV=hmr npm-run-all --parallel server:watch server:nodemon",
     "server:watch": "NODE_ENV=hmr ./node_modules/.bin/webpack --watch --config ./webpack.server.js",
-    "server:nodemon": "NODE_ENV=hmr ./node_modules/.bin/nodemon --watch server dist/server.js"
+    "server:nodemon": "NODE_ENV=hmr ./node_modules/.bin/nodemon --watch dist/server.js dist/server.js"
   },
   "dependencies": {
     "body-parser": "^1.16.0",
