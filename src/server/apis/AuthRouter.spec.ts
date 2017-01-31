@@ -1,8 +1,7 @@
 import {Server} from '../Server';
 import express = require('express');
 import supertest = require('supertest');
-import {AuthService} from '../services/AuthService';
-import {UserCredential} from '../models/userCredential';
+import {AuthService, UserCredential} from '../services/AuthService';
 
 function setup() {
     AuthService.authenticate = jest.fn();

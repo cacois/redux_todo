@@ -1,6 +1,5 @@
-import {UserCredential} from '../models/userCredential';
 import * as express from 'express';
-import {AuthService} from '../services/AuthService';
+import {AuthService, UserCredential} from '../services/AuthService';
 
 export class AuthRouter {
     router: express.Router;
