@@ -37,6 +37,8 @@ export class Server {
         /* istanbul ignore next */
         if (process.env.NODE_ENV === 'hmr') {
             Server.configureHmrMiddleware(app);
+        } else {
+            app.use('/', express.static('public'));
         }
         Server.configureApi(app);
     }

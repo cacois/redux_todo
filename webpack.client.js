@@ -5,11 +5,13 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let clientConfig = {
     target: "web",
     devtool: "eval-source-map",
-    entry: [
-        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-        'react-hot-loader/patch',
-        './src/client/index.tsx'
-    ],
+    entry: process.env.NODE_ENV === 'hmr' ? [
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+            'react-hot-loader/patch',
+            './src/client/index.tsx'
+        ] : [
+            './src/client/index.tsx'
+        ],
     output: {
         path: helpers.root('dist/public'),
         filename: '[name].js',
@@ -46,19 +48,30 @@ let clientConfig = {
             {test: /\.html$/, loader: 'raw'}
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/client/public/index.html',
-            chunksSortMode: 'dependency'
-        }),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        }),
-        new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'})
-    ]
+    plugins: process.env.NODE_ENV === 'hmr' ? [
+            new HtmlWebpackPlugin({
+                template: './src/client/public/index.html',
+                chunksSortMode: 'dependency'
+            }),
+            new webpack.optimize.OccurenceOrderPlugin(),
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoErrorsPlugin(),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            }),
+            new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'})
+        ] : [
+            new HtmlWebpackPlugin({
+                template: './src/client/public/index.html',
+                chunksSortMode: 'dependency'
+            }),
+            new webpack.optimize.OccurenceOrderPlugin(),
+            new webpack.NoErrorsPlugin(),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            }),
+            new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'})
+        ]
 };
 
 module.exports = [clientConfig];

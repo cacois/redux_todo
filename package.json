@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "updateDependencies": "npm update",
-    "run": "NODE_ENV=hmr ./node_modules/.bin/webpack --config ./webpack.server.js && NODE_ENV=hmr node dist/server.js",
-    "watch": "NODE_ENV=hmr ./node_modules/.bin/webpack --watch --config ./webpack.server.js && NODE_ENV=hmr ./node_modules/.bin/nodemon --watch server dist/server.js",
+    "dev": "NODE_ENV=hmr ./node_modules/.bin/webpack --config ./webpack.server.js && NODE_ENV=hmr node dist/server.js",
+    "dist": "NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack.client.js && NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack.server.js",
     "client:test": "NODE_ENV=test-client ./node_modules/.bin/jest --config ./jest.client.json --no-cache",
-    "server:test": "NODE_ENV=test-server ./node_modules/.bin/jest --config ./jest.server.json --no-cache"
+    "server:test": "NODE_ENV=test-server ./node_modules/.bin/jest --config ./jest.server.json --no-cache",
+    "watch": "NODE_ENV=hmr npm-run-all --parallel server:watch server:nodemon",
+    "server:watch": "NODE_ENV=hmr ./node_modules/.bin/webpack --watch --config ./webpack.server.js",
+    "server:nodemon": "NODE_ENV=hmr ./node_modules/.bin/nodemon --watch server dist/server.js"
   },
   "dependencies": {
     "body-parser": "^1.16.0",
@@ -61,6 +64,7 @@
     "less-loader": "^2.2.3",
     "node-sass": "^3.13.0",
     "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.1",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.4.1",
     "react-hot-loader": "^3.0.0-beta.6",
